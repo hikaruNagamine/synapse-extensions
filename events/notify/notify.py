@@ -9,7 +9,7 @@ import sys
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Any
 
 import requests
 from dotenv import load_dotenv
@@ -192,7 +192,7 @@ def notify_email(
         return False
 
 
-def load_env_config() -> Dict[str, str]:
+def load_env_config() -> Dict[str, Any]:
     """
     環境変数から設定を読み込む
 
@@ -240,7 +240,7 @@ def parse_channels(channels_str: str) -> List[str]:
         return [ch for ch in channels if ch in valid_channels]
 
 
-def check_channel_config(channel: str, config: Dict[str, str]) -> Tuple[bool, str]:
+def check_channel_config(channel: str, config: Dict[str, Any]) -> Tuple[bool, str]:
     """
     指定チャネルの設定が有効かチェック
 
@@ -353,7 +353,7 @@ def main():
             results[channel] = success
 
         elif channel == "email":
-            to_addrs = [addr.strip() for addr in config["smtp_to"].split(",")]
+            to_addrs = [addr.strip() for addr in config["smtp_to"].split(",") if addr.strip()]
             success = notify_email(
                 config["smtp_host"],
                 int(config["smtp_port"]),
