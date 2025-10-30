@@ -95,6 +95,19 @@ class NotificationSettings:
     line: Optional[LineConfig] = None
     email: Optional[EmailConfig] = None
 
+    def __post_init__(self) -> None:
+        """設定作成後の検証"""
+        self.validate_all()
+
+    def validate_all(self) -> None:
+        """全設定を検証"""
+        if self.slack:
+            self.slack.validate()
+        if self.line:
+            self.line.validate()
+        if self.email:
+            self.email.validate()
+
     @classmethod
     def from_env(cls) -> 'NotificationSettings':
         """

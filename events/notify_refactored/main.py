@@ -7,6 +7,7 @@ import argparse
 import sys
 import logging
 import os
+from typing import List
 
 # パッケージのルートディレクトリをパスに追加
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ MAX_RETRIES = 3
 logger = logging.getLogger(__name__)
 
 
-def parse_channels(channels_str: str) -> list[str]:
+def parse_channels(channels_str: str) -> List[str]:
     """
     チャネル指定文字列をパース
 
