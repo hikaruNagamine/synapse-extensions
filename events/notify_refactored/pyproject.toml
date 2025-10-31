@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synapse-notify"
+version = "2.0.0"
+description = "Unified notification CLI (Slack, LINE, Email)"
+readme = "README.md"
+license = { file = "../../LICENSE" }
+authors = [
+  { name = "hikaruNagamine" }
+]
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.31.0",
+  "python-dotenv>=1.0.0"
+]
+keywords = ["notification", "slack", "line", "email", "cli"]
+
+[project.scripts]
+notify = "notify_refactored.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]

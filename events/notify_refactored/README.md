@@ -58,6 +58,41 @@ python main.py -m "テスト" --dry-run
 python main.py -m "デバッグ用" -v
 ```
 
+### パッケージとしての利用（配布・取り込み用）
+
+ローカルやCIでこのサブディレクトリ単体をパッケージ（wheel/sdist）として扱えます。
+
+1. インストール（開発モード）
+
+```bash
+cd events/notify_refactored
+pip install -e .
+```
+
+2. CLI（エントリポイント）
+
+```bash
+# インストール後は以下のコマンドが使えます
+notify -m "テスト通知" --channels slack,email
+```
+
+3. モジュール実行
+
+```bash
+python -m notify_refactored -m "テスト通知" --channels all
+```
+
+4. 配布物の作成（wheel/sdist）
+
+```bash
+cd events/notify_refactored
+python -m pip install --upgrade build
+python -m build
+# dist/ に .whl と .tar.gz が生成されます
+```
+
+SpeeDBeeSynapse 等の取り込み先がローカル wheel を要求する場合は、`dist/*.whl` を渡してください。
+
 ### 環境変数設定
 
 `.env.example`を`.env`にコピーして設定：
