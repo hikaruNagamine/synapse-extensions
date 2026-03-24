@@ -1,0 +1,15 @@
+{
+  "parameter_defines": [
+    {
+      "name": "wait_ms",
+      "label": "Wait (ms)",
+      "type": "number",
+      "require": true,
+      "max": 86400000,
+      "default": 1000,
+      "layout": {
+        "col": 2
+      }
+    }
+  ]
+}
