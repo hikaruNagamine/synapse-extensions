@@ -1,0 +1,112 @@
+{
+  "window_size": "middle",
+  "parameter_defines": [
+    {
+      "name": "interval_sec",
+      "label": "Interval (sec)",
+      "type": "number",
+      "require": true,
+      "min": 1,
+      "max": 86400,
+      "default": 1,
+      "layout": {
+        "col": 3
+      }
+    },
+    {
+      "name": "dbquery_url",
+      "label": "DB クエリ URL",
+      "type": "string",
+      "require": true,
+      "max": 512,
+      "default": "http://127.0.0.1:8081/dbquery",
+      "layout": {
+        "col": 5
+      }
+    },
+    {
+      "name": "api_key",
+      "label": "DBクエリ用トークン（X-hive-api-key）",
+      "type": "string",
+      "require": false,
+      "max": 2048,
+      "default": "",
+      "layout": {
+        "col": 4
+      }
+    },
+    {
+      "name": "query_timeout_sec",
+      "label": "Query timeout (sec)",
+      "type": "number",
+      "require": true,
+      "min": 1,
+      "max": 180,
+      "default": 30,
+      "layout": {
+        "col": 2
+      }
+    },
+    {
+      "name": "variables",
+      "label": "監視する GVAR / PVAR",
+      "type": "object",
+      "array": true,
+      "require": false,
+      "parameter_defines": [
+        {
+          "name": "db_ref",
+          "label": "DB参照（$GVAR0 など）",
+          "type": "string",
+          "require": true,
+          "max": 32,
+          "default": "$GVAR0",
+          "layout": {
+            "col": 3
+          }
+        },
+        {
+          "name": "column",
+          "label": "出力カラム名",
+          "type": "string",
+          "require": true,
+          "max": 256,
+          "default": "gvar0_value",
+          "layout": {
+            "col": 3
+          }
+        },
+        {
+          "name": "label_ja",
+          "label": "日本語名称",
+          "type": "string",
+          "require": false,
+          "max": 128,
+          "default": "GVAR0 値",
+          "layout": {
+            "col": 3
+          }
+        },
+        {
+          "name": "description",
+          "label": "説明",
+          "type": "string",
+          "require": false,
+          "max": 512,
+          "default": "SQL では $GVAR0 として参照",
+          "layout": {
+            "col": 12
+          }
+        }
+      ],
+      "default": [
+        {
+          "db_ref": "$GVAR0",
+          "column": "gvar0_value",
+          "label_ja": "GVAR0 値",
+          "description": "SQL では $GVAR0 として参照"
+        }
+      ]
+    }
+  ]
+}
